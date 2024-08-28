@@ -1,10 +1,20 @@
 package com.booleanuk.api.counter;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Counter {
     private int number;
+    private String name;
 
     public Counter() {
         this.number = 0;
+        this.name = "Bob";
+    }
+
+    public Counter(String name) {
+        this.number = 0;
+        this.name = name;
     }
 
     public void increment() {
@@ -17,5 +27,9 @@ public class Counter {
 
     public int getNumber() {
         return this.number;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
