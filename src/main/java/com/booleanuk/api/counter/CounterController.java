@@ -53,15 +53,19 @@ public class CounterController {
         }
 
         this.counter = new Counter(name, 1);
-        return "New counter created for " + name + ", counter value is " + this.counter.getNumber();
+        return "New counter created for " + name + ", initialized value is " + this.counter.getNumber();
 
 
     }
 
     @GetMapping("/custom/{name}/decrement")
-    public void decrementNamedCounter(@PathVariable String name) {
+    public String decrementNamedCounter(@PathVariable String name) {
+        if (this.counter.getName().equals(name)) {
+            this.counter.decrement();
+            return "Counter exists for " + name + ", counter value is " + this.counter.getNumber();
+        }
+        this.counter = new Counter(name, -1);
+        return "New counter created for " + name + ", initialized value is " + this.counter.getNumber();
 
     }
-
-
 }
