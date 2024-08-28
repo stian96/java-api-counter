@@ -12,8 +12,8 @@ public class Counter {
         this.name = "Bob";
     }
 
-    public Counter(String name) {
-        this.number = 0;
+    public Counter(String name, int number) {
+        this.number = number;
         this.name = name;
     }
 

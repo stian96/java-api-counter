@@ -39,11 +39,29 @@ public class CounterController {
     @GetMapping("/custom/{name}")
     public String createCustomCounter(@PathVariable String name) {
         if (!this.counter.getName().equals(name)) {
-            this.counter = new Counter(name);
+            this.counter = new Counter(name, 0);
             return "New counter created for: " + name + "!";
         }
-        else {
-            return "Counter for " + name + " already exists. Counter value is: " + this.counter.getNumber();
-        }
+        return "Counter for " + name + " already exists. Counter value is: " + this.counter.getNumber();
     }
+
+    @GetMapping("/custom/{name}/increment")
+    public String incrementNamedCounter(@PathVariable String name) {
+        if (this.counter.getName().equals(name)) {
+            this.counter.increment();
+            return "Counter exists for " + name + ", new value is: " + this.counter.getNumber();
+        }
+
+        this.counter = new Counter(name, 1);
+        return "New counter created for " + name + ", counter value is " + this.counter.getNumber();
+
+
+    }
+
+    @GetMapping("/custom/{name}/decrement")
+    public void decrementNamedCounter(@PathVariable String name) {
+
+    }
+
+
 }
